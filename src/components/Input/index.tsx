@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { HandleChange, HandleAddItem, FormState } from '../../types'
-import classNames from 'classnames'
 import { Button } from '..'
 
 // Input Wrapper
@@ -20,7 +19,7 @@ const InputWrapper: FC<InputWrapperProps> = ({ label, id, children }) => (
 )
 
 //Input
-const inputClassNames = classNames('xui-textinput--input')
+const inputClassNames = 'xui-textinput--input'
 
 type InvoiceInputProps = {
   formState: FormState

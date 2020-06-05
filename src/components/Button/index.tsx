@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import classNames from 'classnames'
 
 type ButtonProps = {
   label: string
@@ -10,7 +9,7 @@ export const Button: FC<ButtonProps> = ({ label, onClick }) => (
   <button
     onClick={onClick}
     aria-label={'Add Item'}
-    className={classNames('xui-button-standard', 'xui-button-medium')}
+    className={'xui-button-standard xui-button-medium'}
   >
     {label}
   </button>

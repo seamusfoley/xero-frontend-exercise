@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import classNames from 'classnames'
 import {
   HandleChange,
   HandleAddItem,
@@ -74,12 +73,12 @@ const App = () => {
   // Render
   return (
     <div
-      className={classNames(
-        'xui-composition',
-        'xui-composition-is-finite',
-        'xui-composition-has-auto-space-around',
-        'xui-composition-detailheader',
-      )}
+      className={`
+        xui-composition
+        xui-composition-is-finite
+        xui-composition-has-auto-space-around
+        xui-composition-detailheader
+      `}
     >
       <div className={'xui-panel'}>
         <section className={'xui-panel--section'}>

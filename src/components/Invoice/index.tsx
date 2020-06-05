@@ -1,5 +1,4 @@
 import React, { useState, useEffect, FC } from 'react'
-import classNames from 'classnames'
 import { LineItemState } from '../../types'
 
 // LINE ITEM
@@ -10,15 +9,19 @@ type LineItemProps = {
   price: number
 }
 
-const lineItemClass = classNames('InvoiceGrid--Item','xui-u-flex-1', 'xui-text-align-right')
+const lineItemClass = `
+  InvoiceGrid--Item 
+  xui-u-flex-1
+  xui-text-align-right
+`
 
 const LineItem: FC<LineItemProps> = ({
   description,
   quantity,
   cost,
-  price
+  price,
 }) => (
-  <div className='InvoiceGrid--Content'>
+  <div className="InvoiceGrid--Content">
     <div className={'InvoiceGrid--Description'}>{description}</div>
     <div className={lineItemClass}>{quantity}</div>
     <div className={lineItemClass}>{Number(cost).toFixed(2)}</div>
@@ -31,34 +34,37 @@ type InvoiceProps = {
   lineItems?: LineItemState
 }
 
-export const Invoice: FC<InvoiceProps> = ({lineItems = []}) => {
-  const [ total, setTotal ] = useState<Number>(0)
+export const Invoice: FC<InvoiceProps> = ({ lineItems = [] }) => {
+  const [total, setTotal] = useState<Number>(0)
 
   useEffect(() => {
     setTotal(
-      Object.values(lineItems)
-        .reduce((a, value) => a + (value.price || 0), 0)
+      Object.values(lineItems).reduce((a, value) => a + (value.price || 0), 0),
     )
   }, [lineItems])
 
-  const lineItemClassNames = classNames(
-    'InvoiceGrid--Item',
-    'xui-text-label',
-    'xui-u-flex-1',
-    'xui-text-align-right'
-  )
+  const lineItemClassNames = `
+    InvoiceGrid--Item
+    xui-text-label
+    xui-u-flex-1
+    xui-text-align-right
+  `
 
-  return(
-    <div className='InvoiceGrid'>
-      <div className='InvoiceGrid--Headings'>
-        <div className={classNames('InvoiceGrid--Description', 'xui-text-label',)}>Description</div>
+  return (
+    <div className="InvoiceGrid">
+      <div className="InvoiceGrid--Headings">
+        <div
+          className={`InvoiceGrid--Description xui-text-label`}
+        >
+          Description
+        </div>
         <div className={lineItemClassNames}>Quantity</div>
         <div className={lineItemClassNames}>Cost</div>
         <div className={lineItemClassNames}>Price</div>
       </div>
       {Object.entries(lineItems).map(([id, item]) => (
         <LineItem
-          key={id} 
+          key={id}
           description={item.description}
           quantity={item.quantity}
           cost={item.cost}
@@ -69,7 +75,9 @@ export const Invoice: FC<InvoiceProps> = ({lineItems = []}) => {
         <div className={'InvoiceFooter-Totals'}>
           <div className={'InvoiceFooter-Total'}>
             Total:
-            <span className={'InvoiceFooter-AmountDueNumber'}>{`${Number(total).toFixed(2)}`}</span>
+            <span className={'InvoiceFooter-AmountDueNumber'}>{`${Number(
+              total,
+            ).toFixed(2)}`}</span>
           </div>
         </div>
       </div>
