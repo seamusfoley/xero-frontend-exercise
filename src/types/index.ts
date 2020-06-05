@@ -8,10 +8,12 @@ export enum Valid {
   VALID,
 }
 
-export type ValidationState<T extends string> = {[key in T]: {
-  valid: Valid,
-  message: string
-}}
+export type ValidationState<T extends string> = {
+  [key in T]: {
+    valid: Valid
+    message: string
+  }
+}
 
 export type HandleChange = (ev: React.ChangeEvent<HTMLInputElement>) => void
 
@@ -25,4 +27,4 @@ export type FormState = {
   price?: number
 }
 
-export type LineItemState = {[id: string]: Required<Omit<FormState, 'id'>>}
+export type LineItemState = { [id: string]: Required<Omit<FormState, 'id'>> }

@@ -74,6 +74,12 @@
   display: flex;
 }
 
+.InvoiceFooter-Submit {
+  margin-top: 2em;
+  padding-bottom: 1em;
+  align-items: baseline;
+}
+
 .InvoiceFooter-AmountDueNumber {
   font-weight: 600;
   font-size: 1.4em;

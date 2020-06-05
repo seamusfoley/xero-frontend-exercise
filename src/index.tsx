@@ -9,4 +9,4 @@ document.body.classList.add('xui-body')
 ReactDOM.render(
   <App />,
   document.getElementById('root')
-);
+)
