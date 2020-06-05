@@ -1,13 +1,83 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.InvoiceInput {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 1em 2em;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.InvoiceInput--Details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1em 0;
 }
+
+.InvoiceInput--Controls {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.InvoiceGrid {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 1em 2em;
+  
+}
+
+.InvoiceGrid--Headings {
+  display: flex;
+  border-bottom: 1px solid #ccced2;
+}
+
+.InvoiceGrid--Content {
+  display: flex;
+  border-bottom: 1px solid #ccced2;
+  padding: 1em 0;
+
+}
+
+.InvoiceGrid--Description {
+  flex: 3 1 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.InvoiceGrid--Items {
+  white-space: nowrap;
+  flex: 3 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.InvoiceFooter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.InvoiceFooter-Totals {
+  max-width: 50%;
+  min-width: 35%;
+}
+
+.InvoiceFooter-Total {
+  margin-top: 2em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #ccced2;
+  align-items: baseline;
+  display: flex;
+}
+
+.InvoiceFooter-AmountDueNumber {
+  font-weight: 600;
+  font-size: 1.4em;
+  margin-left: auto;
+}
+
+

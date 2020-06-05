@@ -1,44 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Instructions
 
-## Available Scripts
+Hello and welcome to the Xero Front-End Developer pre-interview exercise!
 
-In the project directory, you can run:
+To get a better idea of your skills, we'd like you to implement a basic invoicing UI based on a wireframe design.
 
-### `npm start`
+You should spend no more than one hour on this exercise, allowing 10-15 minutes for a write-up at the end. We don't expect you to complete everything, but we'd like you to write down (at the bottom of this file) a high-level overview of what else you would do to complete the task, and then what else you might do to to get the code to a production-grade state.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This repository was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+If you are not comfortable with React, please feel free to start from scratch with something you are comfortable with, be it a different framework, or vanilla JavaScript + HTML + CSS.
 
-### `npm test`
+A junior developer started writing some code in `src/App.js`. Feel free to use or adapt that if it's useful.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+We want to see code that speaks to your strengths. If you feel your strengths are in design and CSS, then please feel free to spend the time on making the form more beautiful than the wireframe. If your strengths are in JavaScript, then feel free to focus on the logical aspects of the functionality.
 
-### `npm run build`
+## The UI and functionality we'd like you to build
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Invoice wireframe](public/frontend_peer_programming_interview_720.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The design consists of three input fields and a button laid out horizontally. The input fields are: Description, Cost and Quantity. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The button text is "Add item", and when clicked, it should add a new row to a table below the input fields. 
 
-### `npm run eject`
+The table has four columns: Description, Cost, Quantity, and Price, where the Price is the Cost of the item multiplied by the Quantity.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Below the table is a right-aligned total that contains the sum of all prices in the table.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Below the total is a right-aligned button with the text "Submit invoice". When clicked, this would normally make a call to a backend, but for this exercise, you can just make a call to `console.log` with the data you would send to a backend API.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+We look forward to seeing what you come up with!
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Your write-up
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Tell us what you'd do next if you had more time, and what else you might do to to get the code to a production-grade state.
