@@ -10,7 +10,7 @@ type InputWrapperProps = {
 }
 
 const InputWrapper: FC<InputWrapperProps> = ({ label, id, children }) => (
-  <div className="xui-textinputwrapper" role={'presentation'}>
+  <div className="xui-textinputwrapper InvoiceInput-Flex" role={'presentation'}>
     <label htmlFor={id} className="xui-text-label xui-fieldlabel-layout">
       {label}
     </label>
@@ -35,44 +35,50 @@ export const InvoiceInput: FC<InvoiceInputProps> = ({
 }) => (
   <div className="InvoiceInput">
     <div className="InvoiceInput--Details">
-      <InputWrapper label={'Description'} id={'description'}>
-        {(id: string) => (
-          <input
-            id={id}
-            value={formState.description || ''}
-            placeholder={'What have you sold?'}
-            className={inputClassNames}
-            onChange={(ev) => handleChange(ev)}
-          />
-        )}
-      </InputWrapper>
-      <InputWrapper label={'Quantity'} id={'quantity'}>
-        {(id: string) => (
-          <input
-            id={id}
-            value={formState.quantity || ''}
-            placeholder={'Number'}
-            type="number"
-            className={inputClassNames}
-            onChange={(ev) => handleChange(ev)}
-          />
-        )}
-      </InputWrapper>
-      <InputWrapper label={'Cost'} id={'cost'}>
-        {(id: string) => (
-          <input
-            id={id}
-            value={formState.cost || ''}
-            placeholder={'Number'}
-            type="number"
-            className={inputClassNames}
-            onChange={(ev) => handleChange(ev)}
-          />
-        )}
-      </InputWrapper>
-    </div>
-    <div className="InvoiceInput--Controls">
-      <Button label={'Add Item'} onClick={() => handleAddItem()} />
-    </div>
+      <div className="InvoiceInput--Description">
+        <InputWrapper label={'Description'} id={'description'}>
+          {(id: string) => (
+            <input
+              id={id}
+              value={formState.description || ''}
+              placeholder={'What have you sold?'}
+              className={inputClassNames}
+              onChange={(ev) => handleChange(ev)}
+            />
+          )}
+        </InputWrapper>
+      </div>
+      <div className="InvoiceInput--QuantityCosts">
+        <InputWrapper label={'Quantity'} id={'quantity'}>
+          {(id: string) => (
+            <input
+              id={id}
+              inputMode="decimal"
+              value={formState.quantity || ''}
+              placeholder={'Number'}
+              type="number"
+              className={inputClassNames}
+              onChange={(ev) => handleChange(ev)}
+            />
+          )}
+        </InputWrapper>
+        <InputWrapper label={'Cost'} id={'cost'}>
+          {(id: string) => (
+            <input
+              id={id}
+              inputMode="decimal"
+              value={formState.cost || ''}
+              placeholder={'Number'}
+              type="number"
+              className={inputClassNames}
+              onChange={(ev) => handleChange(ev)}
+            />
+          )}
+        </InputWrapper>
+      </div>
+      <div className="InvoiceInput--Controls">
+        <Button label={'Add Item'} onClick={() => handleAddItem()} />
+      </div>
+    </div> 
   </div>
 )

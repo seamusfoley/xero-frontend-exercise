@@ -2,23 +2,22 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 1em 2em;
+  padding: 1em 1em;
 }
 
 .InvoiceInput--Details {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 1em 0;
 }
 
 .InvoiceInput--Controls {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: flex-end;
+  margin: 0 0.5em;
+  align-self: flex-end;
+  padding-top: 1em;
 }
 
 .InvoiceGrid {
@@ -26,20 +25,21 @@
   flex: 1;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 1em 2em;
+  padding: 0.5em 1em;
   
 }
 
 .InvoiceGrid--Headings {
   display: flex;
   border-bottom: 1px solid #ccced2;
+  margin: 0.5em;
 }
 
 .InvoiceGrid--Content {
   display: flex;
   border-bottom: 1px solid #ccced2;
   padding: 1em 0;
-
+  margin: 0 0.5em;
 }
 
 .InvoiceGrid--Description {
@@ -51,7 +51,7 @@
 
 .InvoiceGrid--Items {
   white-space: nowrap;
-  flex: 3 0 0;
+  flex: 1 0 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -59,6 +59,7 @@
 .InvoiceFooter {
   display: flex;
   justify-content: flex-end;
+  margin: 0.5em;
 }
 
 .InvoiceFooter-Totals {
@@ -85,5 +86,33 @@
   font-size: 1.4em;
   margin-left: auto;
 }
+
+.InvoiceInput-Flex {
+  flex: 1;
+  margin: 0 0.5em;
+  width: 150px;
+}
+
+.InvoiceInput--Description {
+  display: inherit;
+  flex: 2;
+  justify-content: inherit;
+}
+
+.InvoiceInput--QuantityCosts {
+  display: inherit;
+  flex: 1;
+  justify-content: inherit;
+}
+
+@media only screen and (max-width: 600px) {
+  .InvoiceGrid--Description {
+    flex: 1;
+  }  
+}
+
+
+
+
 
 
