@@ -19,6 +19,8 @@ export type HandleChange = (ev: React.ChangeEvent<HTMLInputElement>) => void
 
 export type HandleAddItem = () => void
 
+export type HandleSubmit = () => Promise<void>
+
 export type FormState = {
   id?: string
   description?: string

@@ -49,8 +49,6 @@ Currently you can create a Line Item with missing fields, and submit an empty in
 
 Additionally, the form checking in this case should not solely rely on the client, and the front end needs to be able to handle a server side validation rejection.  
 
-
-
 ## Editing/Clearing
 
 The Line Items are uneditable and the form is unable to be cleared so once you've added a Line Item you're committed to submitting it

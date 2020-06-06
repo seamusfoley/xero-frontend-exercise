@@ -5,6 +5,7 @@ import {
   FormState,
   ValidationState,
   LineItemState,
+  HandleSubmit,
 } from './types'
 import { InvoiceInput, Invoice, Button } from './components'
 import { createTempKey, wait } from './utils'
@@ -60,10 +61,12 @@ const App = () => {
     setFormState({})
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit: HandleSubmit = async () => {
     // checkValidation
     setIsSubmitting(true)
+
     await wait(2000)
+
     console.log('Submitted', lineItemState)
     setIsSubmitting(false)
     setLineItemState({})
