@@ -43,12 +43,7 @@ export const Invoice: FC<InvoiceProps> = ({ lineItems = [] }) => {
     )
   }, [lineItems])
 
-  const lineItemClassNames = `
-    InvoiceGrid--Item
-    xui-text-label
-    xui-u-flex-1
-    xui-text-align-right
-  `
+  const lineItemHeadingsClass = `${lineItemClass} xui-text-label`
 
   return (
     <div className="InvoiceGrid">
@@ -58,9 +53,9 @@ export const Invoice: FC<InvoiceProps> = ({ lineItems = [] }) => {
         >
           Description
         </div>
-        <div className={lineItemClassNames}>Quantity</div>
-        <div className={lineItemClassNames}>Cost</div>
-        <div className={lineItemClassNames}>Price</div>
+        <div className={lineItemHeadingsClass}>Quantity</div>
+        <div className={lineItemHeadingsClass}>Cost</div>
+        <div className={lineItemHeadingsClass}>Price</div>
       </div>
       {Object.entries(lineItems).map(([id, item]) => (
         <LineItem
