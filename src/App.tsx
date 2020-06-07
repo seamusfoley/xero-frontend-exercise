@@ -6,7 +6,7 @@ import {
   ValidationState,
   LineItemState,
   HandleSubmit,
-  Validity
+  Validity,
 } from './types'
 import { InvoiceInput, Invoice, Button } from './components'
 import { createTempKey, wait } from './utils'
@@ -20,38 +20,51 @@ const App = () => {
     cost: 0,
   }
 
-  const createDefaultValidationState = () => (
-    Object.entries(defaultFormState).reduce<ValidationState>((a, [key, _]) => ({ 
-      ...a, 
-      [key]: {
-        validity: Validity.UNTOUCHED,
-        messages: ['Required'],
-      }
-    }), {})
-  )
+  const createDefaultValidationState = () =>
+    Object.entries(defaultFormState).reduce<ValidationState>(
+      (a, [key, _]) => ({
+        ...a,
+        [key]: {
+          validity: Validity.UNTOUCHED,
+          messages: ['Required'],
+        },
+      }),
+      {},
+    )
 
   // State
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const [formState, setFormState] = useState<FormState>({})
   const [lineItemState, setLineItemState] = useState<LineItemState>({})
   const [isFormValid, setIsFormValid] = useState<boolean>(false)
-  const [validationState, setValidationState] = useState<ValidationState>(createDefaultValidationState())
+  const [validationState, setValidationState] = useState<ValidationState>(
+    createDefaultValidationState(),
+  )
 
   // Refs
-  const validate = useRef(createValidator(
-    [
-      { test: validateRequired, invalidMessage: 'Field is Required' }
-    ],
-    setValidationState
-  ))
-  
+  const validate = useRef(
+    createValidator(
+      [{ test: validateRequired, invalidMessage: 'Required' }],
+      setValidationState,
+    ),
+  )
+
   //Effects
   // useEffect(() => { console.log(formState) }, [formState])
   // useEffect(() => { console.log(lineItemState) }, [lineItemState])
 
   // Handlers
+  const handleServerSync = async () => {
+    console.log('Starting sync with server')
+    await wait()
+    console.log('Synced with server')
+  }
+
   const handleVaildation = (nextFormState: FormState): void => {
-    const nextValidationState = {...validationState, ...validate.current(nextFormState)}
+    const nextValidationState = {
+      ...validationState,
+      ...validate.current(nextFormState),
+    }
     setValidationState(nextValidationState)
     handleFormVaildation(nextValidationState)
   }
@@ -60,11 +73,18 @@ const App = () => {
     const vState = currentState || validationState
 
     setIsFormValid(
-      Object.values(vState)
-      .reduce<boolean>((a, { validity: v = 2}) => (
-        v !== 1 ? false : a
-      ), true)
+      Object.values(vState).reduce<boolean>(
+        (a, { validity: v = Validity.UNTOUCHED }) => (v !== Validity.VALID ? false : a),
+        true,
+      ),
     )
+  }
+
+  const handleClear = () => {
+    setFormState({})
+    setValidationState(createDefaultValidationState())
+    setIsFormValid(false)
+    setLineItemState({})
   }
 
   const handleChange: HandleChange = (event) => {
@@ -91,6 +111,8 @@ const App = () => {
     setFormState({})
     setValidationState(createDefaultValidationState())
     setIsFormValid(false)
+
+    handleServerSync()
   }
 
   const handleSubmit: HandleSubmit = async () => {
@@ -128,7 +150,18 @@ const App = () => {
           />
           <Invoice lineItems={lineItemState} />
           <div className={'InvoiceGrid'}>
-            <div className={'InvoiceFooter'}>
+            <div className={'InvoiceSubmit'}>
+              <Button
+                style={{
+                  visibility:
+                    Object.keys(lineItemState).length !== 0
+                      ? 'visible'
+                      : 'hidden',
+                }}
+                isDisabled={Object.keys(lineItemState).length === 0}
+                label={'Clear Invoice'}
+                onClick={handleClear}
+              />
               <Button
                 isDisabled={Object.keys(lineItemState).length === 0}
                 label={isSubmitting ? 'Submitting' : 'Submit Invoice'}

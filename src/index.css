@@ -108,6 +108,13 @@
   margin: 0 0 1.5em 0;
 }
 
+.InvoiceSubmit {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em;
+}
+
+
 .StatusColor--Warning {
   color: #f6534e;
 }

@@ -23,7 +23,7 @@ To be honest this has taken me longer than the 45 mins suggested time coding. Th
 
 # Getting started
 
-You can run the example by using `npm start` at the project root and it will start at  `localhost:3000`. The front end is also deployed here [xero-frontend-exercise.seamusfoley.now.sh]
+You can run the example by using `npm start` at the project root and it will start at `localhost:3000`. The front end is also deployed here xero-frontend-exercise.seamusfoley.now.sh
 
 # Approach
 

@@ -6,12 +6,14 @@ type ButtonProps = {
   isDisabled?: boolean
 }
 
-export const Button: FC<ButtonProps> = ({ label, onClick, isDisabled = false }) => (
+export const Button: FC<ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ label, onClick, isDisabled = false, ...props }) => (
   <button
     onClick={onClick}
     aria-label={'Add Item'}
     className={`xui-button-standard xui-button-medium ${isDisabled && `xui-button-is-disabled`}`}
-    disabled={isDisabled}
+    disabled={isDisabled || props.disabled}
+    {...props}
+    style={{...props.style}}
   >
     {label}
   </button>
