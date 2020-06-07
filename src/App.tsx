@@ -152,6 +152,7 @@ const App = () => {
           <div className={'InvoiceGrid'}>
             <div className={'InvoiceSubmit'}>
               <Button
+                data-testid={'clearButton'} 
                 style={{
                   visibility:
                     Object.keys(lineItemState).length !== 0
@@ -163,6 +164,7 @@ const App = () => {
                 onClick={handleClear}
               />
               <Button
+                data-testid={'SubmitButton'} 
                 isDisabled={Object.keys(lineItemState).length === 0}
                 label={isSubmitting ? 'Submitting' : 'Submit Invoice'}
                 onClick={handleSubmit}

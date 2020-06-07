@@ -48,7 +48,8 @@ export const InvoiceInput: FC<InvoiceInputProps> = ({
   <div className="InvoiceInput">
     <div className="InvoiceInput--Details">
       <div className="InvoiceInput--Description">
-        <InputWrapper 
+        <InputWrapper
+          data-testid="Description"
           label={'Description'}
           id={'description'}
           validity={validationState?.description?.validity}
@@ -67,7 +68,8 @@ export const InvoiceInput: FC<InvoiceInputProps> = ({
         </InputWrapper>
       </div>
       <div className="InvoiceInput--QuantityCosts">
-        <InputWrapper 
+        <InputWrapper
+          data-testid="Quantity"
           label={'Quantity'} 
           id={'quantity'}
           validity={validationState?.quantity?.validity}
@@ -86,7 +88,8 @@ export const InvoiceInput: FC<InvoiceInputProps> = ({
             />
           )}
         </InputWrapper>
-        <InputWrapper 
+        <InputWrapper
+          data-testid="Cost" 
           label={'Cost'} 
           id={'cost'}
           validity={validationState?.cost?.validity}
@@ -107,7 +110,7 @@ export const InvoiceInput: FC<InvoiceInputProps> = ({
         </InputWrapper>
       </div>
       <div className="InvoiceInput--Controls">
-        <Button label={'Add Item'} onClick={() => handleAddItem()} isDisabled={!isFormValid} />
+        <Button data-testid="AddItem" label={'Add Item'} onClick={() => handleAddItem()} isDisabled={!isFormValid} />
       </div>
     </div> 
   </div>
