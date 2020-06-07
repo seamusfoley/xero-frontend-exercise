@@ -85,6 +85,7 @@ const App = () => {
     setValidationState(createDefaultValidationState())
     setIsFormValid(false)
     setLineItemState({})
+    handleServerSync()
   }
 
   const handleChange: HandleChange = (event) => {
@@ -149,7 +150,7 @@ const App = () => {
             isFormValid={isFormValid}
           />
           <Invoice lineItems={lineItemState} />
-          <div className={'InvoiceGrid'}>
+          <div className={'InvoxiceGrid'}>
             <div className={'InvoiceSubmit'}>
               <Button
                 data-testid={'clearButton'} 
