@@ -3,12 +3,12 @@ import { Invoice } from '../src/components'
 import { render } from '@testing-library/react'
 
 const lineItemState = {
-  1:{
+  1: {
     description: 'Hello',
-    quantity: 2, 
+    quantity: 2,
     cost: 2,
     price: 4,
-  }
+  },
 }
 
 describe('Renders', () => {
@@ -17,6 +17,6 @@ describe('Renders', () => {
   })
 
   test('Renders with Line Items', () => {
-    render(<Invoice lineItems={lineItemState}/>)
+    render(<Invoice lineItems={lineItemState} />)
   })
 })

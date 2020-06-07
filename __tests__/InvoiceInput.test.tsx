@@ -24,29 +24,34 @@ const createDefaultValidationState = () =>
 
 describe('Renders', () => {
   test('renders without crashing', () => {
-    render(<InvoiceInput 
-      validationState={createDefaultValidationState()} 
-      handleChange={() => {}} 
-      handleAddItem={() => {}} 
-      handleFormVaildation={() => {}}
-      isFormValid={true}
-      formState={defaultFormState}
-    />);
+    render(
+      <InvoiceInput
+        validationState={createDefaultValidationState()}
+        handleChange={() => {}}
+        handleAddItem={() => {}}
+        handleFormVaildation={() => {}}
+        isFormValid={true}
+        formState={defaultFormState}
+      />,
+    )
   })
 })
 
-
 describe('Action', () => {
   test('Submit Button', async () => {
-    render(<InvoiceInput 
-      validationState={createDefaultValidationState()} 
-      handleChange={() => {}} 
-      handleAddItem={() => {}} 
-      handleFormVaildation={() => {}}
-      isFormValid={true}
-      formState={defaultFormState}
-    />)
+    render(
+      <InvoiceInput
+        validationState={createDefaultValidationState()}
+        handleChange={() => {}}
+        handleAddItem={() => {}}
+        handleFormVaildation={() => {}}
+        isFormValid={true}
+        formState={defaultFormState}
+      />,
+    )
 
-    expect(screen.getByPlaceholderText("What have you sold?")).toHaveValue('testDescription')
+    expect(screen.getByPlaceholderText('What have you sold?')).toHaveValue(
+      'testDescription',
+    )
   })
 })

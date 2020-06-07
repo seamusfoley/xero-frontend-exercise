@@ -1,6 +1,11 @@
 import React from 'react'
 import App from '../src/App'
-import { render, fireEvent, waitForElement, screen } from '@testing-library/react'
+import {
+  render,
+  fireEvent,
+  waitForElement,
+  screen,
+} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 describe('Renders', () => {
@@ -14,7 +19,9 @@ describe('Action', () => {
     render(<App />)
     fireEvent.click(screen.getByTestId('SubmitButton'))
     await waitForElement(() => screen.getByTestId('SubmitButton'))
-    expect(screen.getByTestId('SubmitButton')).toHaveTextContent('Submit Invoice')
+    expect(screen.getByTestId('SubmitButton')).toHaveTextContent(
+      'Submit Invoice',
+    )
   })
 
   test('Button is disabled', async () => {

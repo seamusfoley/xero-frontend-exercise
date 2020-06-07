@@ -48,9 +48,7 @@ export const Invoice: FC<InvoiceProps> = ({ lineItems = [] }) => {
   return (
     <div className="InvoiceGrid">
       <div className="InvoiceGrid--Headings">
-        <div
-          className={`InvoiceGrid--Description xui-text-label`}
-        >
+        <div className={`InvoiceGrid--Description xui-text-label`}>
           Description
         </div>
         <div className={lineItemHeadingsClass}>Quantity</div>

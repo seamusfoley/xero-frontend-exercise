@@ -5,6 +5,6 @@ import '@testing-library/jest-dom/extend-expect'
 
 describe('Button', () => {
   test('renders without crashing', () => {
-    render(<Button label={'Hello'} onClick={() => {}}/>)
+    render(<Button label={'Hello'} onClick={() => {}} />)
   })
 })

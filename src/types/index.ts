@@ -37,16 +37,16 @@ type Fields = string[]
 
 export type ValidationTest = (fieldValue: any) => boolean
 
-export type Message = string 
+export type Message = string
 
 export type Validation = {
-  test: ValidationTest,
-  fields?: Fields,
+  test: ValidationTest
+  fields?: Fields
   invalidMessage?: Message
   validMessage?: Message
 }
 
 // From https://stackoverflow.com/questions/61132262/typescript-deep-partial
 export type DeepPartial<T> = {
-  [P in keyof T]?: DeepPartial<T[P]>;
-};
+  [P in keyof T]?: DeepPartial<T[P]>
+}
