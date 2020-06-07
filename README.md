@@ -14,6 +14,7 @@
   - [External dependencies](#external-dependencies)
   - [Responsiveness](#responsiveness)
 - [Thanks](#thanks)
+- [Bonus](#bonus)
 
 # Introduction
 
@@ -23,7 +24,7 @@ To be honest this has taken me longer than the 45 mins suggested time coding. Th
 
 # Getting started
 
-You can run the example by using `npm start` at the project root and it will start at  `localhost:3000`. The front end is also deployed here [xero-frontend-exercise.seamusfoley.now.sh]
+You can run the example by using `npm start` at the project root and it will start at  `localhost:3000`. The front end is also deployed here xero-frontend-exercise.seamusfoley.now.sh
 
 # Approach
 
@@ -84,3 +85,7 @@ The form is semi-responsive as long as you don't try to buy anything too expensi
 # Thanks
 
 Thanks again for the opportunity!
+
+# Bonus
+
+I've had a bit of time over the weekend, so I've adapted a validation method from previous experiment and popped it on the develop branch. It is deployed here https://xero-frontend-exercise-git-develop.seamusfoley.now.sh/
