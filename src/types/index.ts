@@ -2,16 +2,16 @@ export type KeyTypes = string | number | symbol
 
 export type AnyFunction = (...args: any[]) => any
 
-export enum Valid {
-  UNTOUCHED,
+export enum Validity {
   INVALID,
   VALID,
+  UNTOUCHED,
 }
 
-export type ValidationState<T extends string> = {
-  [key in T]: {
-    valid: Valid
-    message: string
+export type ValidationState = {
+  [key: string]: {
+    validity: Validity
+    messages: Message[]
   }
 }
 
@@ -30,3 +30,18 @@ export type FormState = {
 }
 
 export type LineItemState = { [id: string]: Required<Omit<FormState, 'id'>> }
+
+// Validation Types
+
+type Fields = string[]
+
+export type ValidationTest = (fieldValue: any) => boolean
+
+export type Message = string 
+
+export type Validation = {
+  test: ValidationTest,
+  fields?: Fields,
+  invalidMessage?: Message
+  validMessage?: Message
+}

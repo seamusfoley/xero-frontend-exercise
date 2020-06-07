@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
   HandleChange,
   HandleAddItem,
@@ -6,35 +6,65 @@ import {
   ValidationState,
   LineItemState,
   HandleSubmit,
+  Validity
 } from './types'
 import { InvoiceInput, Invoice, Button } from './components'
 import { createTempKey, wait } from './utils'
+import { createValidator } from './utils'
+import { validateRequired } from './utils/validations'
 
 const App = () => {
   const defaultFormState = {
     description: '',
     quantity: 0,
     cost: 0,
-    price: 0,
   }
+
+  const createDefaultValidationState = () => (
+    Object.entries(defaultFormState).reduce<ValidationState>((a, [key, _]) => ({ 
+      ...a, 
+      [key]: {
+        validity: Validity.UNTOUCHED,
+        messages: ['Required'],
+      }
+    }), {})
+  )
 
   // State
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const [formState, setFormState] = useState<FormState>({})
-  // const [validationState, setValidationState] = useState<ValidationState<Required<keyof FormState>>>()
   const [lineItemState, setLineItemState] = useState<LineItemState>({})
+  const [isFormValid, setIsFormValid] = useState<boolean>(false)
+  const [validationState, setValidationState] = useState<ValidationState>(createDefaultValidationState())
 
+  // Refs
+  const validate = useRef(createValidator(
+    [
+      { test: validateRequired, invalidMessage: 'Field is Required' }
+    ],
+    setValidationState
+  ))
+  
   //Effects
   // useEffect(() => { console.log(formState) }, [formState])
   // useEffect(() => { console.log(lineItemState) }, [lineItemState])
 
   // Handlers
-  const handleVaildation = (
-    formState: { [key: string]: unknown },
-    validtions: any[],
-  ) => {
-    // Do something to validate
-    // setValidationState({})
+  const handleVaildation = (nextFormState: FormState): void => {
+    const nextValidationState = {...validationState, ...validate.current(nextFormState)}
+    setValidationState(nextValidationState)
+    handleFormVaildation(nextValidationState)
+  }
+
+  const handleFormVaildation = (currentState?: ValidationState): void => {
+    const vState = currentState || validationState
+
+    setIsFormValid(
+      Object.values(vState)
+      .reduce<boolean>((a, { validity: v = 2}) => (
+        v !== 1 ? false : a
+      ), true)
+    )
   }
 
   const handleChange: HandleChange = (event) => {
@@ -44,7 +74,7 @@ const App = () => {
     const nextFormState = { ...formState, ...nextInputValue }
 
     setFormState(nextFormState)
-    handleVaildation(nextFormState, [])
+    handleVaildation(nextInputValue)
   }
 
   const handleAddItem: HandleAddItem = () => {
@@ -59,6 +89,8 @@ const App = () => {
 
     setLineItemState({ ...lineItemState, [id]: addableForm })
     setFormState({})
+    setValidationState(createDefaultValidationState())
+    setIsFormValid(false)
   }
 
   const handleSubmit: HandleSubmit = async () => {
@@ -71,6 +103,7 @@ const App = () => {
     setIsSubmitting(false)
     setLineItemState({})
     setFormState({})
+    setValidationState(createDefaultValidationState())
   }
 
   // Render
@@ -87,13 +120,17 @@ const App = () => {
         <section className={'xui-panel--section'}>
           <InvoiceInput
             formState={formState}
+            validationState={validationState}
             handleChange={handleChange}
             handleAddItem={handleAddItem}
+            handleFormVaildation={handleFormVaildation}
+            isFormValid={isFormValid}
           />
           <Invoice lineItems={lineItemState} />
           <div className={'InvoiceGrid'}>
             <div className={'InvoiceFooter'}>
               <Button
+                isDisabled={Object.keys(lineItemState).length === 0}
                 label={isSubmitting ? 'Submitting' : 'Submit Invoice'}
                 onClick={handleSubmit}
               />
